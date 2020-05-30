@@ -7,6 +7,7 @@ def mergegametes(gam1, gam2):
   while (counter < len(gam1)):
     gamete += gam1[counter]
     gamete += gam2[counter]
+  print(gamete) #comment/uncomment for debug
   return gamete
 
 def main(argv):
@@ -45,7 +46,7 @@ def main(argv):
     counter += 2
   counter = 0
   #print(len(trait_flip)) #comment/uncomment for debug
-  trait_flip[0] = -1
+  trait_flip[-1] = -1
   while (len(gametes1) < gamete_total):
     #move trait_flip forwards by one
     #I should reimplement this as a bitmask maybe because it's just binary counting
@@ -60,12 +61,14 @@ def main(argv):
         break
       counter2 -= 1
     counter = 0
+    print(trait_flip) #comment/uncomment for debug
     for trait in trait_flip:
       if (trait == 0):
         currgamete += (sys.argv[1][counter])
       else:
         currgamete += (sys.argv[1][counter+1])
       counter += 2
+    print(currgamete) #comment/uncomment for debug
     gametes1.append(currgamete)
     currgamete = ""
   #print(gametes1) #comment/uncomment for debug
