@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 import sys,math
 
+def mergegametes(gam1, gam2):
+  gamete = ""
+  counter = 0
+  while (counter < len(gam1)):
+    gamete += gam1[counter]
+    gamete += gam2[counter]
+  return gamete
+
 def main(argv):
   #print (argv) #comment/uncomment for debug
 
@@ -64,10 +72,10 @@ def main(argv):
   print(" ")
 
   #prints the rest
-  for char2 in sys.argv[2]:
-    print(" ",char2," ", end = "")
-    for char in sys.argv[1]:
-      print("| ", char, char2, " ", end = "", sep = "")
+  for gamete2 in gametes2:
+    print(" ",gamete2," | ", end = "")
+    for gamete in gametes1:
+      print(mergegametes(gamete,gamete2)," | ", end = "")
     print(" ")
 
 main(sys.argv[1:])
