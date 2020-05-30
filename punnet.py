@@ -104,9 +104,10 @@ def main(argv):
   #prints first line
 
   print(" " * (len(gametes1[0])+2), end = "")
-  print("|  ", end = "")
+  print("| ", end = "")
+  #print(len(gametes1[0]))
   for gamete in gametes1:
-    print(gamete, "  |  ", end = "")
+    print(gamete, " " * (len(gametes1[0])), " | ", end = "", sep = "")
   print(" ")
 
   #prints the rest
