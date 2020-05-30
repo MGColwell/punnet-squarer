@@ -49,11 +49,16 @@ def main(argv):
   while (len(gametes1) < gamete_total):
     #move trait_flip forwards by one
     #I should reimplement this as a bitmask maybe because it's just binary counting
-    print(len(gametes1))
-    trait_flip[???] = ???
-    #if (trait_flip[counter2] == 1):
-    #  counter2 += 1
-    #trait_flip[counter2] += 1
+    #print(len(gametes1))
+    counter2 = len(trait_flip) - 1
+    trait_flip[counter2] += 1
+    while(counter2 > 0):
+      if (trait_flip[counter2] == 2):
+        trait_flip[counter2] = 0
+        trait_flip[counter2 - 1] += 1
+      else:
+        break
+      counter2 -= 1
     counter = 0
     for trait in trait_flip:
       if (trait == 0):
@@ -62,8 +67,9 @@ def main(argv):
         currgamete += (sys.argv[1][counter+1])
       counter += 2
     gametes1.append(currgamete)
-  print(gametes1) #comment/uncomment for debug
-  exit()
+    currgamete = ""
+  #print(gametes1) #comment/uncomment for debug
+  #exit()
 
   #prints first line
   print("   ", end = "")
