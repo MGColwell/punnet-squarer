@@ -2,12 +2,14 @@
 import sys,math
 
 def mergegametes(gam1, gam2):
+  #print(gam1,gam2) #comment/uncomment for debug
   gamete = ""
   counter = 0
   while (counter < len(gam1)):
     gamete += gam1[counter]
     gamete += gam2[counter]
-  print(gamete) #comment/uncomment for debug
+    counter += 1
+  #print(gamete) #comment/uncomment for debug
   return gamete
 
 def main(argv):
@@ -61,30 +63,59 @@ def main(argv):
         break
       counter2 -= 1
     counter = 0
-    print(trait_flip) #comment/uncomment for debug
+    #print(trait_flip) #comment/uncomment for debug
     for trait in trait_flip:
       if (trait == 0):
         currgamete += (sys.argv[1][counter])
       else:
         currgamete += (sys.argv[1][counter+1])
       counter += 2
-    print(currgamete) #comment/uncomment for debug
+    #print(currgamete) #comment/uncomment for debug
     gametes1.append(currgamete)
     currgamete = ""
-  #print(gametes1) #comment/uncomment for debug
-  #exit()
+  counter = 0
+  counter3 = 0
+  while (counter < len(sys.argv[1])):
+    trait_flip[counter3] = 0
+    counter += 2
+    counter3 += 1
+  counter = 0
+  trait_flip[-1] = -1
+  while (len(gametes2) < gamete_total):
+    counter2 = len(trait_flip) - 1
+    trait_flip[counter2] += 1
+    while(counter2 > 0):
+      if (trait_flip[counter2] == 2):
+        trait_flip[counter2] = 0
+        trait_flip[counter2 - 1] += 1
+      else:
+        break
+      counter2 -= 1
+    counter = 0
+    for trait in trait_flip:
+      if (trait == 0):
+        currgamete += (sys.argv[2][counter])
+      else:
+        currgamete += (sys.argv[2][counter+1])
+      counter += 2
+    gametes2.append(currgamete)
+    currgamete = ""
 
   #prints first line
-  print("   ", end = "")
+
+  print(" " * (len(gametes1[0])+2), end = "")
+  print("|  ", end = "")
   for gamete in gametes1:
-    print(" | ", gamete, end = "")
+    print(gamete, "  |  ", end = "")
   print(" ")
 
   #prints the rest
   for gamete2 in gametes2:
-    print(" ",gamete2," | ", end = "")
+    print("",gamete2, end = "")
+    #print("gamete2") #comment/uncomment for debug
     for gamete in gametes1:
-      print(mergegametes(gamete,gamete2)," | ", end = "")
+      print(" | ", end = "")
+      print(mergegametes(gamete,gamete2), end = "")
     print(" ")
 
-main(sys.argv[1:])
+main(sys.argv[1:2])
